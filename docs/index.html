@@ -21,7 +21,7 @@
 </head>
 <body>
 
-    <h1>Welcome to My GitHub Pages Site</h1>
+    <h1>Welcome to My CommuteReportApp Site</h1>
 
     <!-- Section where README.md content will be displayed -->
     <div id="markdown-content"></div>
@@ -36,7 +36,7 @@
 
     <script>
         // Fetch and display README.md content on page load
-        fetch('../README.md')
+        fetch('https://adamjamro.github.io/CommuteReportApp/site-content.md')
             .then(response => response.text())
             .then(markdown => {
                 document.getElementById('markdown-content').innerHTML = marked(markdown);
@@ -45,7 +45,7 @@
 
         // Fetch and display privacy-policy.md content when the button is clicked
         document.getElementById('show-privacy').addEventListener('click', function() {
-            fetch('privacy-policy.md')
+            fetch('https://adamjamro.github.io/CommuteReportApp/privacy-policy.md')
                 .then(response => response.text())
                 .then(markdown => {
                     document.getElementById('privacy-content').innerHTML = marked(markdown);
