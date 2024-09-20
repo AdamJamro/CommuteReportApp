@@ -3,51 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>My GitHub Pages Site</title>
-    {% include head %}
+    <title>Welcome to My GitHub Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
+            margin: 20px;
         }
-        #privacy-content {
+        h1 {
+            color: #333;
+        }
+        #privacy-policy-content {
             display: none;
             margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        button {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
+    <!-- Include the marked.js library for rendering markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
+    <h1>Welcome to My Commute Report App Page</h1>
 
-    <h1>Welcome to My CommuteReportApp Site</h1>
+    <!-- Load and display the content of content-site.md -->
+    <div id="main-content"></div>
 
-    <br>
+    <!-- Toggle button for privacy policy -->
+    <button onclick="togglePrivacyPolicy()">Show Privacy Policy</button>
 
-    <main>
-	{% include site-content.md %}
-
-	<button id="privacy-policy-toggle">View Privacy Policy</button>
-	<div id="privacy-content"></div>
-    </main>
-
-    <footer>
-	<p>Copyright &copy; 2024 My Website</p>
-	{% include footer %}
-    </footer>
+    <!-- Load and display the content of privacy-policy.md -->
+    <div id="privacy-policy-content"></div>
 
     <script>
-	const toggleButton = document.getElementById('privacy-policy-toggle');
-	const privacyPolicy = document.getElementById('privacy-policy');
+        // Function to load markdown content
+        function loadMarkdownFile(filePath, elementId) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById(elementId).innerHTML = marked.parse(text);
+                })
+                .catch(error => console.error('Error loading file:', error));
+        }
 
-	toggleButton.addEventListener('click', () => {
-	    if (privacyPolicy.style.display === 'none') {
-		privacyPolicy.style.display = 'block';
-	    } else {
-		privacyPolicy.style.display = 'none';
-	    }
-	});        
+        // Load content-site.md on page load
+        loadMarkdownFile('https://adamjamro.github.io/CommuteReportApp/site-content.md', 'main-content');
+
+        // Toggle the privacy policy content
+        function togglePrivacyPolicy() {
+            const policyContent = document.getElementById('privacy-policy-content');
+            if (policyContent.style.display === 'none') {
+                loadMarkdownFile('https://adamjamro.github.io/CommuteReportApp/privacy-policy.md', 'privacy-policy-content');
+                policyContent.style.display = 'block';
+                document.querySelector('button').textContent = 'Hide Privacy Policy';
+            } else {
+                policyContent.style.display = 'none';
+                document.querySelector('button').textContent = 'Show Privacy Policy';
+            }
+        }
     </script>
+
 
 </body>
 </html>
