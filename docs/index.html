@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Example</title>
+
+    <!-- Load Marked.js (Markdown parser) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to My App</h1>
+    
+    <div id="markdown-content"></div>
+
+    <br>
+    <a href="privacy-policy.md">Go to Privacy Policy</a>
+
+    <script>
+        // Fetch and display the README.md content
+        fetch('README.md')
+            .then(response => response.text())
+            .then(markdown => {
+                // Convert Markdown to HTML and display it
+                document.getElementById('markdown-content').innerHTML = marked(markdown);
+            });
+    </script>
+
+</body>
+</html>
