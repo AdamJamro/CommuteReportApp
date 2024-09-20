@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My GitHub Page</title>
+    <title>Commute Report App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,29 +14,23 @@
         }
         #privacy-policy-content {
             display: none;
-            margin-top: 20px;
+            margin-top: 10px;
             border: 1px solid #ddd;
             padding: 10px;
             background-color: #f9f9f9;
         }
         button {
             margin-top: 10px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <!-- Include the marked.js library for rendering markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <h1>Welcome to My Commute Report App Page</h1>
-
-    <!-- Load and display the content of content-site.md -->
     <div id="main-content"></div>
-
-    <!-- Toggle button for privacy policy -->
     <button onclick="togglePrivacyPolicy()">Show Privacy Policy</button>
-
-    <!-- Load and display the content of privacy-policy.md -->
     <div id="privacy-policy-content"></div>
 
     <script>
@@ -50,10 +44,8 @@
                 .catch(error => console.error('Error loading file:', error));
         }
 
-        // Load content-site.md on page load
         loadMarkdownFile('https://adamjamro.github.io/CommuteReportApp/site-content.md', 'main-content');
 
-        // Toggle the privacy policy content
         function togglePrivacyPolicy() {
             const policyContent = document.getElementById('privacy-policy-content');
             if (policyContent.style.display === 'none') {
@@ -66,7 +58,5 @@
             }
         }
     </script>
-
-
 </body>
 </html>
